@@ -92,9 +92,10 @@ class CreditEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Select::make('credit.client_id')
-                         ->fromModel(Client::class, 'pm_raison_sociale')
+                Relation::make('client.')
+                         ->fromModel(Client::class, 'id')
                          ->empty('No select')
+                         ->displayAppend('full')
                          ->title('Client')
                          ->horizontal(),
                 Select::make('credit.typecredit_id')
@@ -115,6 +116,7 @@ class CreditEditScreen extends Screen
                     6 => 'Semestrielle',
                     12 => 'Annuelle'
                 ])->title('Périodicité')
+                ->empty('No select')
                 ->horizontal(),
                 Select::make('credit.objetscredits_id')
                           ->fromModel(ObjetCredit::class, 'libel')
@@ -135,6 +137,7 @@ class CreditEditScreen extends Screen
                     2 => 'Inclus dans les remboursments',
                     3 => 'A la fin',
                 ])->title('Mode de perception de la marge')
+                ->empty('No select')
                 ->horizontal(),
 
                 Select::make('credit.mode_calc_int')->options([

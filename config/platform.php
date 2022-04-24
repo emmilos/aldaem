@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'prefix' => env('DASHBOARD_PREFIX', '/aldeam'),
+    'prefix' => env('DASHBOARD_PREFIX', '/'),
 
     /*
     |--------------------------------------------------------------------------
