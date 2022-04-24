@@ -12,7 +12,7 @@ class SectActivites extends Model
 {
     use HasFactory, AsSource, Attachable, Filterable;
 
-    protected $table= 'sect_activites';
+    protected $table= 'sect_activite';
 
     protected $fillable = [
            'libelle',
