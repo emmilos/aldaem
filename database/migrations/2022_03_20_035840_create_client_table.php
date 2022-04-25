@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("adresse");
             $table->string("code_postal");
             $table->string("ville");
-            $table->foreignId("pays_id")->contrained();
+            $table->string("pays_id");
             $table->string("pp_pays_naiss");
             $table->string("num_tel");
             $table->string("num_port");
@@ -30,9 +30,9 @@ return new class extends Migration
             $table->string("loc3");
             $table->date("date_adh");
             $table->integer("etat");
-            $table->foreignId("sect_activites_id")->constrained();
+            $table->string("sect_activites_id");
             $table->string("utilis_modif");
-            $table->foreignId("user_id")->constrained();
+            $table->string("user_id");
             $table->integer("nbre_credits");
             $table->string("pp_nom");
             $table->string("pp_prenom");
