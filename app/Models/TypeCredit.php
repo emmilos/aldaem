@@ -15,6 +15,6 @@ class TypeCredit extends Model
 
 protected $table = 'typecredits';
 
-protected $garded = [];
+protected $guarded = [];
 
 }

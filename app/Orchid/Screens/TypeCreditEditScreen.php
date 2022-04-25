@@ -7,7 +7,9 @@ use App\Models\TypeCredit;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
 class TypeCreditEditScreen extends Screen
@@ -77,7 +79,7 @@ class TypeCreditEditScreen extends Screen
         Layout::rows([
           Group::make([
             Input::make('typecredits.tx_marge_min')
-                   ->type('double')
+                   ->type('number')
                    ->horizontal()
                    ->title('Taux marge min'),
 
@@ -117,25 +119,25 @@ class TypeCreditEditScreen extends Screen
                    ->type('int')
                    ->horizontal()
                    ->title('Periodicité'),*/
-
+           Group::make([
             Input::make('typecredits.mnt_frais_min')
-            ->type('double')
+            ->type('number')
             ->horizontal()
             ->title('Montant frais min'),
             Input::make('typecredits.mnt_frais_max')
-            ->type('double')
+            ->type('number')
             ->horizontal()
             ->title('Montant frais max'),
-
+           ]),
             Input::make('typecredits.mnt_commission')
-                   ->type('double')
+                   ->type('number')
                    ->horizontal()
                    ->title('Montant commission'),
 
             Input::make('typecredits.prc_assurance')
-            ->type('double')
+            ->type('number')
             ->horizontal()
-            ->title('prc_assurance'),
+            ->title('pourcentage assurance'),
             /*Input::make('typecredits.prc_gar_num')
             ->type('double')
             ->horizontal()
@@ -166,19 +168,19 @@ class TypeCreditEditScreen extends Screen
             ->title('prc_penalite_retard'),*/
 
             Input::make('typecredits.delai_grace_jour')
-            ->type('int')
+            ->type('number')
             ->horizontal()
-            ->title('delai_grace_jour'),
+            ->title('Delai de grace(en jour)'),
 
-            Input::make('typecredits.differe_jour_max')
+            /*Input::make('typecredits.differe_jour_max')
                    ->type('int')
                    ->horizontal()
-                   ->title('differe_jour_max'),
+                   ->title('differe_jour_max'),*/
 
             Input::make('typecredits.prc_commission')
-            ->type('double')
+            ->type('number')
             ->horizontal()
-            ->title('prc_commission'),
+            ->title('pourcentage commission'),
 
             /*Input::make('typecredits.type_duree_credit')
                    ->type('int')
@@ -279,11 +281,11 @@ class TypeCreditEditScreen extends Screen
                    ->horizontal()
                    ->title('cpte_cpta_att_deb'),*/
 
-                   Input::make('typecredits.is_produit_actif')
-                   ->type('int')
+                   CheckBox::make('typecredits.is_produit_actif')
+                   ->value('1')
                    ->horizontal()
-                   ->title('is_produit_actif'),
-                    Input::make('typecredits.mode_perc_int')
+                   ->title('Le produit est actif ?'),
+                   /* Input::make('typecredits.mode_perc_int')
                                         ->type('int')
                                         ->horizontal()
                                         ->title('Mode_perc_int'),
@@ -291,7 +293,7 @@ class TypeCreditEditScreen extends Screen
                     Input::make('typecredits.typ_caution_financiere')
                                         ->type('int')
                                         ->horizontal()
-                                        ->title('Typ_caution_financiere'),
+                                        ->title('Typ_caution_financiere'),*/
 
             ])
 
@@ -302,9 +304,9 @@ class TypeCreditEditScreen extends Screen
     {
         $typecredit->fill($request->get('typecredits'))->save();
 
-        //Alert::info('Vous avez créée un nouveau client avec succès !');
+        Alert::info('Vous avez créée un nouveau mode de financement avec succès !');
 
-        return redirect()->route('platform.modefinancements.list');
+        return redirect()->route('platform.modefinancement.list');
     }
 
     /**
@@ -313,12 +315,12 @@ class TypeCreditEditScreen extends Screen
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function remove(TypeCredit $type_credits)
+    public function remove(TypeCredit $typecredits)
     {
-        $type_credits->delete();
+        $typecredits->delete();
 
-        //Alert::info('You have successfully deleted the post.');
+        Alert::info('Vous avez supprimer un mode de financement avec succès.');
 
-        return redirect()->route('platform.type_credits.list');
+        return redirect()->route('platform.modefinancement.list');
     }
 }

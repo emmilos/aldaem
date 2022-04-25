@@ -31,6 +31,11 @@ class Client extends Model
         return $array;
     }
 
+    public function getFullAttribute(): string
+    {
+        return $this->attributes['pp_nom']. ' ' . $this->attributes['pp_prenom']  . ' ' . $this->attributes['pm_raison_sociale'] . ' ';
+    }
+
     public function credits(){
         return $this->hasMany(Creditt::class);
     }
