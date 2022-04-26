@@ -70,7 +70,8 @@ class ClientEditPMScreen extends Screen
     /**
      * Views.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return \O
+     * rchid\Screen\Layout[]|string[]
      */
     public function layout(): iterable
     {
