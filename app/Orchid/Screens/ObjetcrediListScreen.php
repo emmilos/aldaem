@@ -23,7 +23,7 @@ class ObjetcrediListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'ObjetcrediListScreen';
+        return 'Objet de crédit';
     }
 
     /**
