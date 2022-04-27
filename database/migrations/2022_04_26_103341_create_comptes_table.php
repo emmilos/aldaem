@@ -60,8 +60,6 @@ return new class extends Migration
             $table->double('mnt_min_cpte')->nullable();
             //solde_part_soc_restant ,
             $table->integer('id_ag')->nullable();
-            //interet_a_capitaliser ,
-            //dat_nb_reconduction  ,
             $table->integer('num_cpte_comptable')->nullable();
             $table->dateTime('date_creation')->nullable();
             $table->dateTime('date_modif ')->nullable();
