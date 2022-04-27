@@ -47,7 +47,7 @@ return new class extends Migration
             $table->integer('dat_nb_prolong')->nullable();
             //dat_decision_client,
             $table->dateTime('dat_date_decision_client')->nullable();
-            $table->('intitule_compte')->nullable();
+            $table->text('intitule_compte')->nullable();
             //decouvert_max ,
             //cpt_vers_int  ,
             //export_netbank,
@@ -65,7 +65,7 @@ return new class extends Migration
             $table->integer('num_cpte_comptable')->nullable();
             $table->dateTime('date_creation')->nullable();
             $table->dateTime('date_modif ')->nullable();
-            $table->string('mnt_bloq_cre')->nullable();        
+            $table->string('mnt_bloq_cre')->nullable();
             $table->timestamps();
         });
     }

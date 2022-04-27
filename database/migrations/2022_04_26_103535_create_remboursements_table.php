@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('remboursements', function (Blueprint $table) {
-            $table->foreignId("id_doss")->constrained();
-            $table->foreignId("id_ech")->constrained();
+            $table->integer("id_doss");
+            $table->integer("id_ech");
             $table->integer("num_remb");
             $table->dateTime("date_remb");
             $table->double("mnt_remb_cap");
