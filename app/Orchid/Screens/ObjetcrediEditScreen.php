@@ -3,6 +3,13 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
+use App\Models\ObjetCredit;
+use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Actions\Button;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Layout;
+use Orchid\Screen\Fields\DateTimer;
 
 class ObjetcrediEditScreen extends Screen
 {
@@ -11,6 +18,10 @@ class ObjetcrediEditScreen extends Screen
      *
      * @return array
      */
+    //public $objetcredit;
+
+    public $objetcredits;
+
     public function query(): iterable
     {
         return [];
@@ -23,7 +34,7 @@ class ObjetcrediEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'ObjetcrediEditScreen';
+        return $this->objetcredits->exists ? 'Mise à jour Objets de Credits' : 'Création d\'un objet de creditg';;
     }
 
     /**
@@ -33,7 +44,9 @@ class ObjetcrediEditScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            
+        ];
     }
 
     /**
@@ -41,8 +54,11 @@ class ObjetcrediEditScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]|string[]
      */
+    
     public function layout(): iterable
     {
-        return [];
+        return [
+              
+        ];
     }
 }

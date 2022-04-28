@@ -12,7 +12,7 @@ class ObjetCredit extends Model
 {
     use HasFactory, AsSource, Attachable, Filterable;
 
-    protected $table = 'objets_credits';
+    protected $table = 'objetcredits';
 
     protected $fillable = [
         'libel',

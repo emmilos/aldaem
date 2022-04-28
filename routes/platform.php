@@ -16,6 +16,7 @@ use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
+use App\Orchid\Screens\ObjetcrediEditScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\ClientEditScreen;
@@ -169,3 +170,8 @@ Route::screen('modefinancements', TypeCreditListScreen::class)
 Route::screen('modefinancement/{typecredit?}', TypeCreditEditScreen::class)
     ->name('platform.modefinancement.edit');
 
+Route::screen('objcredit/{objcredit?}', ObjetcrediEditScreen::class)
+    ->name('platform.objcredit.edit');
+
+Route::screen('objcredits', ObjetcrediEditScreen::class)
+    ->name('platform.objcredit.list');
