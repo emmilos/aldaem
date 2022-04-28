@@ -61,8 +61,8 @@ return new class extends Migration
             //solde_part_soc_restant ,
             $table->integer('id_ag')->nullable();
             $table->integer('num_cpte_comptable')->nullable();
-            $table->dateTime('date_creation')->nullable();
-            $table->dateTime('date_modif ')->nullable();
+            //$table->dateTime('date_creation')->nullable();
+            //$table->dateTime('date_modif ')->nullable();
             $table->string('mnt_bloq_cre')->nullable();
             $table->timestamps();
         });
