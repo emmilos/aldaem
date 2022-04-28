@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('credits', function (Blueprint $table) {
             $table->id();
             $table->integer("client_id");
-            $table->integer("typecredit_id");
+            $table->integer("typecredits_id");
             $table->integer("mode_calc_int")->nullable();
             $table->integer("mode_perc_int")->nullable();
             $table->date("date_dem")->nullable();
             $table->double("mnt_dem")->nullable();
-            $table->integer("objets_credit_id")->nullable();
+            $table->integer("objetscredits_id")->nullable();
             $table->string("detail_obj_dem")->nullable();
             $table->string("etat")->nullable();
             $table->date("date_etat")->nullable();
