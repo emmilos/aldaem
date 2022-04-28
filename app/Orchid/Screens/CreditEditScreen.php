@@ -107,7 +107,7 @@ class CreditEditScreen extends Screen
                           ->title('Date de la demande')
                           ->horizontal(),
                 DateTimer::make('credit.cre_date_debloc')
-                           ->title('Date déblocage')
+                           ->title('Date de déblocage')
                            ->horizontal(),
                 Select::make('credit.periodicite')->options([
                     0 => 'En une seule fois',
