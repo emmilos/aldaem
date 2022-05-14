@@ -39,7 +39,7 @@ class TypeCreditListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Créer uu mode financement')
+            Link::make('Créer un mode financement')
                 ->icon('pencil')
                 ->route('platform.modefinancement.edit')
         ];

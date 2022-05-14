@@ -39,6 +39,10 @@ class Client extends Model
     public function credits(){
         return $this->hasMany(Creditt::class);
     }
+
+    public function comptes(){
+        return $this->BelonsTo(Creditt::class);
+    }
     protected $fillable = [
         'statut_juridique',
         'adresse',

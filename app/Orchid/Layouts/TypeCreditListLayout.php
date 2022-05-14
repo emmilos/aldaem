@@ -2,8 +2,11 @@
 
 namespace App\Orchid\Layouts;
 
+use App\Models\TypeCredit;
+use App\View\Components\TypecreditSortInformation;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Layouts\Table;
+use App\View\CompochangingTypecreditShortInformation;
 use Orchid\Screen\TD;
 
 class TypeCreditListLayout extends Table
@@ -44,13 +47,19 @@ class TypeCreditListLayout extends Table
            ->render(function ($duree) {
             return '[' . e($duree->duree_min_mois) . ' - ' . e($duree->duree_max_mois). ']';
            }),
-            TD::make('periodicite'),
+            TD::make('periodicite')->component(TypecreditSortInformation::class),
+
             TD::make('Frais dossier')
            ->render(function ($frais) {
             return '[' . e($frais->mnt_frais_min) . ' - ' . e($frais->mnt_frais_max). ']';
            }),
-            TD::make('mode_perc_int'),
-            TD::make('typ_caution_financiere'),
+           // TD::make('mode_perc_int')->render(function (TypeCredit $typecredit){
+
+             //   return [
+
+//];
+           //// }),
+//TD::make('typ_caution_financiere')->component(TypecreditSortInformation::class),
 
         ];
     }

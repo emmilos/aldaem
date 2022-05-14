@@ -2,6 +2,9 @@
 
 namespace App\Orchid\Screens;
 
+use App\Models\ObjetCredit;
+use App\Orchid\Layouts\ObjetCreditListLayout;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
 class ObjetcrediListScreen extends Screen
@@ -13,7 +16,9 @@ class ObjetcrediListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'objetcredits' => ObjetCredit::paginate(),
+        ];
     }
 
     /**
@@ -33,7 +38,11 @@ class ObjetcrediListScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Link::make('Créer un objet de credit')
+                ->icon('pencil')
+                ->route('platform.objcredit.edit')
+        ];
     }
 
     /**
@@ -43,6 +52,8 @@ class ObjetcrediListScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            ObjetCreditListLayout::class
+        ];
     }
 }

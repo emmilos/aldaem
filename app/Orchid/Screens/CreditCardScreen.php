@@ -4,11 +4,15 @@ namespace App\Orchid\Screens;
 
 use App\Models\Client;
 use App\Models\Credit;
+use App\Models\Echeanciers;
+use App\Models\TypeCredit;
+use App\Orchid\Layouts\EcheanciersListLayout;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Matrix;
 use Orchid\Screen\TD;
@@ -20,11 +24,15 @@ class CreditCardScreen extends Screen
      *
      * @return array
      */
+    public  $echeanciers;
     public function query(Credit $credit): iterable
     {
         //$credit = Credit::with('Client')->latest()->paginate();
         return [
             'credit' => $credit,
+            //'echeancier_id'
+            //dd($credit),
+            'echeanciers' => Echeanciers::where('credit_id','=', $credit->id)->paginate()
         ];
     }
 
@@ -57,20 +65,30 @@ class CreditCardScreen extends Screen
     {
         return [
             Layout::legend('credit', [
-            Sight::make('id', 'No Credit'),
-            Sight::make('pp_raison_sociale', 'client')->render(function (Credit $credit) {
-                    return $credit->client()->get();
+            //Group::make([
+            Sight::make('client_id', 'No Client'),
+
+            Sight::make('client', 'client')
+                ->render(function (Credit $credit) {
+                    return e($credit->client->pm_raison_sociale). '' .e($credit->client->pp_nom). ' '. e($credit->client->pp_prenom);
                 }),
-            Sight::make('', 'client')
-            ->render(function (Credit $credit) {
-                return $credit->client->pp_raison_sociale;
-
-            }),
-            Sight::make('client_id'),
-
-
+            //]),
+            Sight::make('typecredits', 'Mode de financement')
+                ->render(function (Credit $credit) {
+                    return $credit->typecredit->libel;
+                }),
         ]),
 
+/*Layout::rows([
+    Matrix::make('echeanciers')
+    ->title('Users list')
+    ->columns(['id', 'credit_id']),
+]),*/
+
+     EcheanciersListLayout::class,
+
+
     ];
+
     }
 }

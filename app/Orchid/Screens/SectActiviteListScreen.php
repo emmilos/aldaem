@@ -2,12 +2,12 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\TypeMarge;
-use App\Orchid\Layouts\TypeMargeListLayout;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use App\Models\SectActivites;
+use App\Orchid\Layouts\SectActiviteListLayout;
+use Orchid\Screen\Actions\Link;
 
-class TypemargeListScreen extends Screen
+class SectActiviteListScreen extends Screen
 {
     /**
      * Query data.
@@ -17,7 +17,7 @@ class TypemargeListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'type_marge' => TypeMarge::paginate(),
+            'sect_activite' => SectActivites::paginate()
         ];
     }
 
@@ -28,7 +28,7 @@ class TypemargeListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Type de marge';
+        return 'SectActiviteListScreen';
     }
 
     /**
@@ -39,9 +39,9 @@ class TypemargeListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Créer un type de marge')
-            ->icon('pencil')
-            ->route('platform.typemarge.edit')
+            Link::make('Créer un secteur d\'activités')
+                ->icon('pencil')
+                ->route('platform.sectactivite.edit')
         ];
     }
 
@@ -53,7 +53,7 @@ class TypemargeListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            TypeMargeListLayout::class,
+           SectActiviteListLayout::class
         ];
     }
 }

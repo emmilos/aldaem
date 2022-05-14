@@ -2,22 +2,21 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\TypeMarge;
-use App\Orchid\Layouts\TypeMargeListLayout;
-use Orchid\Screen\Actions\Link;
+use App\Models\Echeanciers;
 use Orchid\Screen\Screen;
 
-class TypemargeListScreen extends Screen
+class EcheanciersListScreen extends Screen
 {
     /**
      * Query data.
      *
      * @return array
      */
+    public $echeanciers;
     public function query(): iterable
     {
         return [
-            'type_marge' => TypeMarge::paginate(),
+         'echeanciers' => Echeanciers::paginate()
         ];
     }
 
@@ -28,7 +27,7 @@ class TypemargeListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Type de marge';
+        return 'EcheanciersListScreen';
     }
 
     /**
@@ -38,11 +37,7 @@ class TypemargeListScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [
-            Link::make('Créer un type de marge')
-            ->icon('pencil')
-            ->route('platform.typemarge.edit')
-        ];
+        return [];
     }
 
     /**
@@ -52,8 +47,6 @@ class TypemargeListScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [
-            TypeMargeListLayout::class,
-        ];
+        return [];
     }
 }

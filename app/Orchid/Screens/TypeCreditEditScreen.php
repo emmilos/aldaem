@@ -115,10 +115,10 @@ class TypeCreditEditScreen extends Screen
           ]),
         ]),
         Layout::rows([
-            /*Input::make('typecredits.periodicite')
-                   ->type('int')
+            Input::make('typecredits.periodicite')
+                   ->type('number')
                    ->horizontal()
-                   ->title('Periodicité'),*/
+                   ->title('Periodicité'),
            Group::make([
             Input::make('typecredits.mnt_frais_min')
             ->type('number')

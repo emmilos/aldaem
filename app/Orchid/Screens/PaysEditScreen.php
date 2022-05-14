@@ -50,7 +50,7 @@ class PaysEditScreen extends Screen
     {
         return [
 
-        Button::make('Créer client')
+        Button::make('Créer')
             ->icon('pencil')
             ->method('createOrUpdate')
             ->canSee(!$this->pays->exists),

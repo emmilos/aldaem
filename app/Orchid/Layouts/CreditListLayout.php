@@ -34,7 +34,15 @@ class CreditListLayout extends Table
 
 
                     TD::make('id'),
-                    TD::make('client_id', 'client')
+                    TD::make('client', 'client')
+                    ->render(function (Credit $credit) {
+                        return e($credit->client->pm_raison_sociale). '' .e($credit->client->pp_nom). ' '. e($credit->client->pp_prenom);
+                    }),
+                    TD::make('typecredit', 'Mode de financement')
+                ->render(function (Credit $credit) {
+                    return e($credit->typecredit->libel);
+                }),
+                    TD::make()
 
 
 

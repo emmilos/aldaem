@@ -38,10 +38,10 @@ class PlatformProvider extends OrchidServiceProvider
                     Menu::make('Retrait express')->icon('money')->route('platform.retrait.edit'),
                     Menu::make('Depot express')->icon('money')->route('platform.depot.express'),
                 ]),
-            Menu::make('Menu Crédit')
+            Menu::make(__('Menu Crédit'))
                 ->icon('bag')
                 ->list([
-                     Menu::make('Mise en place dossier de crédit')
+                     Menu::make('Mise en place dosùsier de crédit')
                      ->icon('money')
                      ->route('platform.credit.edit'),
                      Menu::make('Approbation dossier de crédit')
@@ -89,15 +89,22 @@ class PlatformProvider extends OrchidServiceProvider
                      ->icon('globe')
                      ->route('platform.pays.list'),
                      Menu::make('Secteurs d\'activités')
-                     ->icon('list'),
+                     ->icon('list')
+                     ->route('platform.sectactivite.list'),
                      Menu::make('Localisations')
                      ->icon('home'),
                      Menu::make('Objets de crédits')
-                     ->icon('list'),
+                     ->icon('list')
+                     ->route('platform.objcredit.list'),
                      Menu::make('Types de marges')
-                     ->icon('money'),
+                     ->icon('money')
+                     ->route('platform.objcredit.list'),
                      Menu::make('Mode de Financements')
-                     ->icon('money'),
+                     ->icon('money')
+                     ->route('platform.modefinancement.list'),
+                     Menu::make('Produit d\'épargne')
+                     ->icon('money')
+                     ->route('platform.produitepargne.list'),
                 ]),
         ];
     }

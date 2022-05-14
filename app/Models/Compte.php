@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Compte extends Model
 {
     use HasFactory;
+    protected $table = 'comptes';
 
     protected $guarded = [];
+
+    public function client(){
+        return $this->hasOne(Client::class);
+    }
 }

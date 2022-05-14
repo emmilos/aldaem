@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\ProduitsEpargne;
 use App\Orchid\Layouts\TypeCreditListLayout;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -23,6 +24,7 @@ use App\Orchid\Screens\ClientEditScreen;
 use App\Orchid\Screens\ClientEditPMScreen;
 use App\Orchid\Screens\ClientListScreen;
 use App\Orchid\Screens\CreditEditScreen;
+use App\Orchid\Screens\CreditApprobationScreen;
 use App\Orchid\Screens\PaysEditScreen;
 use App\Orchid\Screens\PaysListScreen;
 use App\Orchid\Screens\CreditListScreen;
@@ -32,8 +34,15 @@ use App\Orchid\Screens\RetraitEditScreen;
 use App\Orchid\Screens\OuvertureCompteScreen;
 use App\Orchid\Screens\ClientCardScreen;
 use App\Orchid\Screens\CreditCardScreen;
+use App\Orchid\Screens\ObjetcrediListScreen;
+use App\Orchid\Screens\ProduitEpargneEditScreen;
+use App\Orchid\Screens\ProduitEpargneListScreen;
+use App\Orchid\Screens\SectActiviteListScreen;
+use App\Orchid\Screens\SectActiviteScreen;
 use App\Orchid\Screens\TypeCreditEditScreen;
 use App\Orchid\Screens\TypeCreditListScreen;
+use App\Orchid\Screens\TypemargeEditScreen;
+use App\Orchid\Screens\TypemargeListScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,7 +149,8 @@ Route::screen('clients', ClientListScreen::class)
 
 Route::screen('credit/{credit?}', CreditEditScreen::class)
     ->name('platform.credit.edit');
-
+Route::screen('creditapprobation/{credit?}', CreditApprobationScreen::class)
+    ->name('platform.credit.approbation');
 Route::screen('credits', CreditListScreen::class)
     ->name('platform.credit.list');
 
@@ -148,6 +158,11 @@ Route::screen('pays/{pays?}', PaysEditScreen::class)
     ->name('platform.pays.edit');
 Route::screen('listpays', PaysListScreen::class)
     ->name('platform.pays.list');
+
+Route::screen('typemarge/{typemarge?}', TypemargeEditScreen::class)
+    ->name('platform.typemarge.edit');
+Route::screen('typemarges', TypemargeListScreen::class)
+    ->name('platform.typemarge.list');
 
 Route::screen('clientele', GestionClientele::class)
     ->name('platform.gestion.clientele');
@@ -173,5 +188,15 @@ Route::screen('modefinancement/{typecredit?}', TypeCreditEditScreen::class)
 Route::screen('objcredit/{objcredit?}', ObjetcrediEditScreen::class)
     ->name('platform.objcredit.edit');
 
-Route::screen('objcredits', ObjetcrediEditScreen::class)
+Route::screen('sectactivite/{sectactivite?}', SectActiviteScreen::class)
+    ->name('platform.sectactivite.edit');
+Route::screen('sectactivites', SectActiviteListScreen::class)
+    ->name('platform.sectactivite.list');
+
+Route::screen('prodepargne/{produitepargne?}',ProduitEpargneEditScreen::class)
+    ->name('platform.produitepargne.edit');
+Route::screen('prodepargnes', ProduitEpargneListScreen::class)
+    ->name('platform.produitepargne.list');
+
+Route::screen('objcredits', ObjetcrediListScreen::class)
     ->name('platform.objcredit.list');

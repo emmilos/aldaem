@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens;
 
+use App\Models\Compte;
 use Orchid\Screen\Actions\Button;
 use App\Models\ProduitsEpargne;
 use Orchid\Screen\Fields\Group;
@@ -18,12 +19,12 @@ class OuvertureCompteScreen extends Screen
      *
      * @return array
      */
-    public $produit;
+    public $compte;
 
-    public function query(ProduitsEpargne $produit): iterable
+    public function query(Compte $compte): iterable
     {
         return [
-            'produit' => $produit
+            'compte' => $compte
         ];
     }
 

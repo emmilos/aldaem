@@ -23,22 +23,17 @@ class Credit extends Model
         return $this->BelongsTo(Client::class, 'client_id');
     }
     public function typecredit(){
-
-        Return $this->BelongsTo(TypeCredit::class);
+        return $this->BelongsTo(TypeCredit::class, 'typecredit_id');
      }
-
-
-     public function typemarge(){
-
-        Return $this->BelongsTo(TypeMarge::class);
+    public function typemarge(){
+        return $this->BelongsTo(TypeMarge::class);
      }
      public function objetscredits(){
-
-        Return $this->belongsTo(ObjetsCredits::class);
+        return $this->belongsTo(ObjetsCredits::class);
      }
 
-     public function Echeancier (){
-        Return $this->HasMany(Echeancier::class);
+     public function echeanciers (){
+        return $this->HasMany(Echeanciers::class);
     }
 
 
