@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Dompdf\Dompdf;
+use Barryvdh\DomPDF\PDF;
 use App\Models\ProduitsEpargne;
 use App\Orchid\Layouts\TypeCreditListLayout;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -37,12 +39,16 @@ use App\Orchid\Screens\CreditCardScreen;
 use App\Orchid\Screens\ObjetcrediListScreen;
 use App\Orchid\Screens\ProduitEpargneEditScreen;
 use App\Orchid\Screens\ProduitEpargneListScreen;
+use App\Orchid\Screens\RemboursementEditScreen;
 use App\Orchid\Screens\SectActiviteListScreen;
 use App\Orchid\Screens\SectActiviteScreen;
 use App\Orchid\Screens\TypeCreditEditScreen;
 use App\Orchid\Screens\TypeCreditListScreen;
 use App\Orchid\Screens\TypemargeEditScreen;
 use App\Orchid\Screens\TypemargeListScreen;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf as PdfDompdf;
+
+//use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,6 +194,9 @@ Route::screen('modefinancement/{typecredit?}', TypeCreditEditScreen::class)
 Route::screen('objcredit/{objcredit?}', ObjetcrediEditScreen::class)
     ->name('platform.objcredit.edit');
 
+Route::screen('remboursement/{credit?}', RemboursementEditScreen::class)
+    ->name('platform.remboursement.edit');
+
 Route::screen('sectactivite/{sectactivite?}', SectActiviteScreen::class)
     ->name('platform.sectactivite.edit');
 Route::screen('sectactivites', SectActiviteListScreen::class)
@@ -200,3 +209,69 @@ Route::screen('prodepargnes', ProduitEpargneListScreen::class)
 
 Route::screen('objcredits', ObjetcrediListScreen::class)
     ->name('platform.objcredit.list');
+
+Route::get('PDF/pays', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.pays'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.pays', ['Attachement'=>false]);
+})->name('PDF/pays');
+
+
+
+Route::get('PDF/localisation', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.localisation'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.localisation', ['Attachement'=>false]);
+})->name('PDF/localisation');
+
+Route::get('PDF/sectacti', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.sectacti'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.sectacti', ['Attachement'=>false]);
+})->name('PDF/sectacti');
+
+Route::get('PDF/typemarge', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.typemarge'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.typemarge', ['Attachement'=>false]);
+})->name('PDF/typemarge');
+
+Route::get('PDF/objetcredit', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.objetcredit'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.objetcredit', ['Attachement'=>false]);
+})->name('PDF/objetcredit');
+
+Route::get('PDF/typecredit', function(){
+
+
+    $dompdf=new Dompdf();
+    $dompdf->loadhtml(view('PDF.typecredit'));
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $dompdf->stream('PDF.typecredit', ['Attachement'=>false]);
+})->name('PDF/typecredit');
+
+
+//Route::post('PDF/pays','PaysOrchidController@pdf')->name('pdf');
+//Route::get('PDF/pays','PaysOrchidController@pdf')->name('pdf1');

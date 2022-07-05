@@ -3,10 +3,12 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Compte;
+use App\Models\Client;
 use Orchid\Screen\Actions\Button;
 use App\Models\ProduitsEpargne;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
@@ -57,26 +59,38 @@ class OuvertureCompteScreen extends Screen
     {
         return [
             Layout::rows([
-                Select::make('produit.id')
+                Relation::make('comptes.client_id')
+                         ->fromModel(Client::class, 'id')
+                         ->empty('No select')
+                         ->displayAppend('full')
+                         ->title('Client')
+                         ->horizontal(),
+                Select::make('comptes.produits_epargnes_id')
                       ->fromModel(ProduitsEpargne::class, 'libel')
                       ->empty('No select')
                       ->title('Produit d\'Epargne')
                       ->horizontal(),
-                Input::make('produit.   ')
+                Input::make('comptes.   ')
                       ->title('Numéro de compte')
                       ->horizontal(),
-                Input::make('produit.')
+                Input::make('comptes.')
                       ->title('Intitulé du compte')
                       ->horizontal(),
-                Input::make('produit.')
-                      ->title('Solde réel')
+                Input::make('comptes.')
+                      ->title('Frais d\'ouverture de compte')
                       ->horizontal(),
-                Input::make('produit.')
-                      ->title('Type de dépot')
+                Input::make('comptes.')
+                      ->title('Frais de depôt sur le compte')
                       ->horizontal(),
-                Input::make('Montant à déposer')
-                      ->title('Montant à déposer')
+                Input::make('comptes.')
+                      ->title('Montant minimum sur le compte')
                       ->horizontal(),
+                Input::make('comptes.')
+                      ->title('Versement minimum')
+                      ->horizontal(),
+                Input::make('comptes.')
+                      ->title('Montant maximum sur le compte')
+                      ->horizontal(),                
             ]),
         Layout::rows([
           Group::make([
@@ -97,8 +111,6 @@ class OuvertureCompteScreen extends Screen
                     //'id' => $user->id,
                 ]),
           ])->autoWidth()
-
-
               ])
 
         ];

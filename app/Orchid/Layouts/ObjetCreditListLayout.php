@@ -25,8 +25,9 @@ class ObjetCreditListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id'),
-            TD::make('libel')
+            TD::make('id', __('Code Objet de crédit')),
+            TD::make('libel', __('Libellé objet de crédit'))
+
         ];
     }
 }

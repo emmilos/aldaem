@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Screen;
@@ -67,7 +69,7 @@ class DepotEpressScreen extends Screen
                     ->horizontal(),
         Group::make([
             Button::make(__('Valider'))
-              ->method('remove')
+              ->method('savedepot')
               ->icon('save')
               ->type(Color::PRIMARY())
               ->confirm(__('Are you sure you want to delete the user?'))
@@ -88,4 +90,31 @@ class DepotEpressScreen extends Screen
             ])
         ];
     }
+
+    public function savedepot(Request $request)
+    {
+        /*`SoldeTPE` DECIMAL(20,6),
+	`numerotransaction` TEXT,
+	`numcompte` TEXT,
+	`montantdepose` DECIMAL(20,6),
+	`datejour` TIMESTAMP,
+	`numcomptepointservice` TEXT,
+	`slogin` TEXT,
+	`cptliaison` INT,
+	`typag` INT,
+	`dep` INT*/
+
+
+        //$pays->fill($request->get('pays'))->save();
+        //$montant = $request->input('user.roles', []);
+        //$parametre1 = $credit->id;
+        //$parametre2 = $request->input('montant', []);;
+        //Input::get('montant') ;
+        //Alert::info('Vous avez créée un nouveau client avec succès !');
+        DB::statement("select depotespeces(?,?,?,?,?,?,?,?,?,?)", [0,0,0,0,Now(),0,0,0,0,0,
+            //$parametre1,
+           // $parametre2,
+        ]);
+
+}
 }

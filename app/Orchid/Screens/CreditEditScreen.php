@@ -16,9 +16,12 @@ use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use App\Models\ObjetCredit;
+use App\Models\periodicite;
 use App\Orchid\Layouts\margelistener;
 use App\Orchid\Layouts\CreditEditLayout;
+use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Fields\Label;
+//use Illuminate\Http\Request;
 
 class CreditEditScreen extends Screen
 {
@@ -92,7 +95,7 @@ class CreditEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Relation::make('client.')
+                Relation::make('credit.client_id')
                          ->fromModel(Client::class, 'id')
                          ->empty('No select')
                          ->displayAppend('full')
@@ -109,7 +112,12 @@ class CreditEditScreen extends Screen
                 DateTimer::make('credit.cre_date_debloc')
                            ->title('Date de déblocage')
                            ->horizontal(),
-                Select::make('credit.periodicite')->options([
+                Select::make('credit.periodicite')
+                           ->fromModel(periodicite::class, 'libel')
+                           ->empty('No select')
+                           ->title('Periodicité')
+                           ->horizontal(),
+/*->options([
                     0 => 'En une seule fois',
                     1 => 'Mensuelle',
                     3 => 'trimestrielle',
@@ -117,7 +125,7 @@ class CreditEditScreen extends Screen
                     12 => 'Annuelle'
                 ])->title('Périodicité')
                 ->empty('No select')
-                ->horizontal(),
+                ->horizontal(),*/
                 Select::make('credit.objetscredits_id')
                           ->fromModel(ObjetCredit::class, 'libel')
                           ->empty('No select')
@@ -127,7 +135,7 @@ class CreditEditScreen extends Screen
                 Input::make('credit.detail_obj_dem')->title('Detail de la demande')->horizontal(),
                 Input::make('credit.duree_mois')->title('Durée en mois')->horizontal(),
                 Input::make('credit.delai_grac')->title('Délai de grace')->horizontal(),
-                Input::make('credit.credit.etat')
+                Input::make('credit.etat')
                       ->value('En attente de decision')
                       ->title('Etat du dossier')
                       ->readonly()
@@ -156,26 +164,28 @@ class CreditEditScreen extends Screen
                     Input::make('Bénefice estimatif', 'Benefice_estimatif'),
                 ])->dependsOn('mode_calc_int', 1),*/
 
-                //Input::make('credit.mnt_dem')->title('Frais de dossier')->horizontal(),
-                //Input::make('credit.montant_marge')->title('Marge appliquée')->horizontal(),
+                Input::make('credit.mnt_dem')->title('Frais de dossier')->horizontal(),
+                Input::make('credit.montant_marge')->title('Marge appliquée')->horizontal(),
                 Input::make('credit.gar_num')->title('Montant Caution')->horizontal(),
                 Input::make('credit.mnt_assurance')->title('Montant assurance')->horizontal(),
                 Input::make('credit.mnt_commission')->title('Montant commission')->horizontal(),
-                Input::make('credit.mnt_frais_dossier')->title('Frais de dossier')->horizontal(),
+                Input::make('credit.mnt_frais_doss')->title('Frais de dossier')->horizontal(),
                 ]),
-                margelistener::class,
+                //margelistener::class,
 
         ];
     }
-
 
     public function createOrUpdate(Credit $credit, Request $request)
     {
         $credit->fill($request->get('credit'))->save();
 
-        Alert::info('Vous avez créée un nouveau client avec succès !');
-
-        return redirect()->route('platform.credit.list');
+        $parametre1 = $credit->id;
+        DB::statement("call echeancier(?)", [
+            $parametre1
+        ]);
+        Alert::info('Nouveau crédit mis en place avec succès !');
+        return redirect()->route('platform.credit.show');
     }
 
     /**

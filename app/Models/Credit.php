@@ -28,6 +28,17 @@ class Credit extends Model
     public function typemarge(){
         return $this->BelongsTo(TypeMarge::class);
      }
+
+
+    public function getFullAttribute(): string
+    {
+        return 'Dossier N° ' . $this->attributes['id']  . ' du ' . $this->attributes['date_dem'];
+    }
+
+    public function periode(){
+        return $this->BelongsTo(periodicite::class);
+     }
+
      public function objetscredits(){
         return $this->belongsTo(ObjetsCredits::class);
      }

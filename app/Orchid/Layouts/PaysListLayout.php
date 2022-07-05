@@ -33,9 +33,9 @@ class PaysListLayout extends Table
     {
         return [
             TD::make('id'),
-            TD::make('libel_pays'),
-            TD::make('code_pays'),
-            TD::make('libel_nationalite')
+            TD::make('libel_pays', __('Nom du pays')),
+            TD::make('code_pays', __('Code du pays')),
+            TD::make('libel_nationalite', __('Nationalité'))
         ];
     }
 }

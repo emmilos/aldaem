@@ -30,8 +30,6 @@ class CreditCardScreen extends Screen
         //$credit = Credit::with('Client')->latest()->paginate();
         return [
             'credit' => $credit,
-            //'echeancier_id'
-            //dd($credit),
             'echeanciers' => Echeanciers::where('credit_id','=', $credit->id)->paginate()
         ];
     }
@@ -78,12 +76,6 @@ class CreditCardScreen extends Screen
                     return $credit->typecredit->libel;
                 }),
         ]),
-
-/*Layout::rows([
-    Matrix::make('echeanciers')
-    ->title('Users list')
-    ->columns(['id', 'credit_id']),
-]),*/
 
      EcheanciersListLayout::class,
 

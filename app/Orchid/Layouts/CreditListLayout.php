@@ -7,6 +7,9 @@ use App\Models\Client;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\Button;
 
 class CreditListLayout extends Table
 {
@@ -38,11 +41,36 @@ class CreditListLayout extends Table
                     ->render(function (Credit $credit) {
                         return e($credit->client->pm_raison_sociale). '' .e($credit->client->pp_nom). ' '. e($credit->client->pp_prenom);
                     }),
-                    TD::make('typecredit', 'Mode de financement')
-                ->render(function (Credit $credit) {
-                    return e($credit->typecredit->libel);
+                    TD::make('typecredit', 'Produit de financement')
+                    ->render(function (Credit $credit) {
+                        return e($credit->typecredit->libel);
                 }),
-                    TD::make()
+                    TD::make('mnt_dem', 'Montant demandé'),
+                    TD::make('etat', 'Etat du dossier'),
+                    TD::make('date_dem', 'Date demande'),
+
+                    TD::make(__('Actions'))
+                    ->align(TD::ALIGN_CENTER)
+                    ->width('100px')
+                    ->render(function (Credit $credit) {
+                        return DropDown::make()
+                            ->icon('options-vertical')
+                            ->list([
+                                Link::make(__('Edit'))
+                                    ->route('platform.typemarge.edit', $credit->id)
+                                    ->icon('pencil'),
+                                Button::make(__('Delete'))
+                                    ->icon('trash')
+                                    ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                                    ->method('', [
+                                        'id' => $credit->id,
+                                    ]),
+                                ]);
+                            })
+    
+
+                    
+                    
 
 
 

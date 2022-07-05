@@ -27,12 +27,12 @@ class EcheanciersListLayout extends Table
     protected function columns(): iterable
     {
         return [
-           TD::make('id', 'No'),
-           TD::make('date_ech', 'Date echeance'),
-           TD::make('mnt_cap', 'Montant capital'),
-           TD::make('mnt_int', 'Montant marge'),
-           TD::make('mnt_gar', 'Montant caution'),
-           TD::make('', 'Total echeance'),
+           TD::make('id', __('No')),
+           TD::make('date_ech', __('Date echeance')),
+           TD::make('mnt_cap', __('Montant capital')),
+           TD::make('mnt_int', __('Montant marge')),
+           TD::make('mnt_gar', __('Montant caution')),
+           TD::make('', __('Total echeance')),
         ];
     }
 }

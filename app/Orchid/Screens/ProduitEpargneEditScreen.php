@@ -87,23 +87,23 @@ class ProduitEpargneEditScreen extends Screen
                          ->horizontal()
                          ->title('Frais de tenue du compte'),
 
-                  Input::make('paroduits_epargnes.frais_ouverture_cpt')
-                  ->type('int')
-                  ->horizontal()
-                  ->title('Frais de retrait'),
-                  Input::make('paroduits_epargnes.frais_ouverture_cpt')
-                  ->type('int')
-                  ->horizontal()
-                  ->title('Frais ouverture'),
-                  Input::make('paroduits_epargnes.tx_interet')
-                  ->type('int')
-                  ->horizontal()
-                  ->title('Taux d\'interêt'),
-                  Input::make('paroduits_epargnes.freq_calcul_int')
-                  ->type('int')
-                  ->horizontal()
-                  ->title('Fréquence de calcul des interêts'),
-                  //is_produit_actif
+                    Input::make('paroduits_epargnes.frais_ouverture_cpt')
+                         ->type('int')
+                         ->horizontal()
+                         ->title('Frais de retrait'),
+                    Input::make('paroduits_epargnes.frais_ouverture_cpt')
+                         ->type('int')
+                         ->horizontal()
+                         ->title('Frais ouverture'),
+                    Input::make('paroduits_epargnes.tx_interet')
+                         ->type('int')
+                         ->horizontal()
+                         ->title('Taux d\'interêt'),
+                    Input::make('paroduits_epargnes.freq_calcul_int')
+                         ->type('int')
+                         ->horizontal()
+                         ->title('Fréquence de calcul des interêts'),
+                  
             ])
         ];
 
@@ -112,9 +112,9 @@ class ProduitEpargneEditScreen extends Screen
     {
         $produitepargne->fill($request->get('paroduits_epargnes'))->save();
 
-        //Alert::info('Vous avez créée un nouveau client avec succès !');
+        Alert::info('Vous avez créée un nouveau produit épargne avec succès !');
 
-        return redirect()->route('platform.pays.list');
+        return redirect()->route('platform.produitepargne.list');
     }
 
 }

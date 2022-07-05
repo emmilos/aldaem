@@ -29,9 +29,9 @@ class SectActiviteListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id'),
+            TD::make('id', __('Code')),
             TD::make('libelle', __('Libellé du secteur d\'activité')),
-            TD::make('created_at'),
+            TD::make('created_at', __('Date création')),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
@@ -40,11 +40,11 @@ class SectActiviteListLayout extends Table
                         ->icon('options-vertical')
                         ->list([
 
-                            Link::make(__('Edit'))
+                            Link::make(__('Modifié'))
                                 ->route('platform.sectactivite.edit', $sectActivites->id)
                                 ->icon('pencil'),
 
-                            Button::make(__('Delete'))
+                            Button::make(__('Supprimé'))
                                 ->icon('trash')
                                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                                 ->method('remove', [

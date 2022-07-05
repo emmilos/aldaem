@@ -41,7 +41,11 @@ class PaysListScreen extends Screen
         return [
             Link::make('Créer un pays')
                 ->icon('pencil')
-                ->route('platform.pays.edit')
+                ->route('platform.pays.edit'),
+
+            Link::make('Exporter PDF')
+
+                ->route('PDF/pays')
         ];
     }
 
